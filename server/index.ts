@@ -3,7 +3,15 @@ import { createServer } from "http";
 import { Server } from "socket.io";
 
 const app = express();
-const httpServer = createServer(app);
+const fs = require("fs");
+const httpServer = require("https").createServer(
+  {
+    key: fs.readFileSync("./privatekey.pem"),
+    cert: fs.readFileSync("./cert.pem"),
+  },
+  app
+);
+
 const cors = require("cors");
 app.use(cors());
 
@@ -19,6 +27,8 @@ app.get("/", (req: express.Request, res: express.Response) => {
     message: "root path",
   });
 });
+
+app.get("/", (req, res) => res.send("Hello World!"));
 
 io.on("connection", (socket) => {
   console.log("connected");
