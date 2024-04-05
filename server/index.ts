@@ -9,7 +9,7 @@ const cors = require("cors");
 const port = "8080";
 
 const httpServer = createServer(app);
-app.use();
+app.use(cors());
 
 const io = new Server(httpServer);
 
