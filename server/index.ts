@@ -6,6 +6,7 @@ const https = require("https");
 const app = express();
 const fs = require("fs");
 const cors = require("cors");
+const path = require("path");
 
 // SSL証明書の読み込み
 // const options = {
@@ -14,6 +15,12 @@ const cors = require("cors");
 // };
 // 資格情報オブジェクトを作成する
 // const credentials = { key: options.key, cert: options.cert };
+
+// HTTP-01 challengeへのルートを追加
+app.use(
+  "/.well-known/acme-challenge",
+  express.static(path.join(__dirname, ".well-known", "acme-challenge"))
+);
 
 const port = "80";
 
