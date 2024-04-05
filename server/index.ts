@@ -11,7 +11,8 @@ const path = require("path");
 // letsencrypt-express用の初期化コード開始
 
 // 次の行の.testing()は本番環境では外して下さい
-var LEX = require("letsencrypt-express");
+var LEX = require("letsencrypt-express").testing();
+
 // 以下の2行は環境に合わせて変更して下さい！
 var DOMAIN = "back.test.kirota.net";
 var EMAIL = "user@example.com";
