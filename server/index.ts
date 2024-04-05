@@ -9,14 +9,17 @@ const cors = require("cors");
 const port = "8080";
 
 const httpServer = createServer(app);
-app.use(cors());
+app.use(
+  cors({
+    origin: "*",
+    credentials: true,
+  })
+);
 
 const io = new Server(httpServer, {
   cors: {
     origin: "*",
     methods: ["GET", "POST"],
-    allowedHeaders: ["my-custom-header"],
-    credentials: true,
   },
 });
 
