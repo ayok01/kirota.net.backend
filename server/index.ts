@@ -9,19 +9,9 @@ const cors = require("cors");
 const port = "8080";
 
 const httpServer = createServer(app);
-app.use(
-  cors({
-    origin: "*",
-    credentials: true,
-  })
-);
+app.use();
 
-const io = new Server(httpServer, {
-  cors: {
-    origin: "*",
-    methods: ["GET", "POST"],
-  },
-});
+const io = new Server(httpServer);
 
 app.get("/", (req: express.Request, res: express.Response) => {
   res.json({
