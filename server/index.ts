@@ -1,5 +1,6 @@
 import express from "express";
 import { createServer } from "http";
+import { Server, Socket } from "socket.io";
 
 const socketIO = require("socket.io");
 const app = express();
@@ -10,7 +11,7 @@ const port = "8080";
 const httpServer = createServer(app);
 app.use(cors());
 
-const io = socketIO(httpServer);
+const io: Server = new Server(httpServer);
 
 app.get("/", (req: express.Request, res: express.Response) => {
   res.json({
