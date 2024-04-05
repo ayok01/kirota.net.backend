@@ -8,20 +8,20 @@ const fs = require("fs");
 const cors = require("cors");
 
 // SSL証明書の読み込み
-const options = {
-  key: fs.readFileSync("./privatekey.pem"),
-  cert: fs.readFileSync("./cert.pem"),
-};
+// const options = {
+//   key: fs.readFileSync("./privatekey.pem"),
+//   cert: fs.readFileSync("./cert.pem"),
+// };
 // 資格情報オブジェクトを作成する
-const credentials = { key: options.key, cert: options.cert };
+// const credentials = { key: options.key, cert: options.cert };
 
 const port = "80";
 
-const httpsServer = https.createServer(credentials, app);
+// const httpsServer = https.createServer(credentials, app);
 const httpServer = createServer(app);
 app.use(cors());
 
-const io = new Server(httpsServer, {
+const io = new Server(httpServer, {
   cors: {
     origin: "*",
     methods: ["GET", "POST"],
@@ -47,6 +47,6 @@ httpServer.listen(port, () => {
   console.log("Chat server listening on port" + port);
 });
 
-httpsServer.listen(443, () => {
-  console.log("Chat server listening on port 443");
-});
+// httpsServer.listen(443, () => {
+//   console.log("Chat server listening on port 443");
+// });
